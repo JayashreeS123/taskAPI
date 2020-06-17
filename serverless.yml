@@ -1,0 +1,30 @@
+service: task
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+    createTradingData:
+    handler: service/tradeApi.createTradingData
+    events:
+      - http:
+          path: tradingData
+          method: post
+          cors: true
+
+    getTradingData:
+    handler: service/tradeApi.getTradingData
+    events:
+      - http:
+          path: tradingData
+          method: get
+          cors: true      
+
+
+
+
+plugins:
+- serverless-offline
+
+
